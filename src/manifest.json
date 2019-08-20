@@ -1,0 +1,17 @@
+{
+  "name": "LCVim",
+  "version": "0.1.0",
+  "manifest_version": 2,
+  "description": "A Chrome extension to apply custom vim key-bindings on LeetCode",
+  "icons": {
+    "48": "img/logo.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://leetcode.com/problems/*"],
+      "js": ["dist/contentScript.js"],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": ["dist/main.js"]
+}
