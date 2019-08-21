@@ -1,5 +1,5 @@
 {
-  "name": "dbvim",
+  "name": "lcvim",
   "version": "1.0.0",
   "description": "A Chrome extension to apply custom vim key-bindings on LeetCode",
   "main": "index.js",
