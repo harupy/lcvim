@@ -19,8 +19,6 @@
     "dotenv": "^8.0.0",
     "eslint": "^5.16.0",
     "eslint-loader": "^2.1.2",
-    "jest": "^24.8.0",
-    "puppeteer": "^1.18.1",
     "webpack": "^4.34.0",
     "webpack-cli": "^3.3.4"
   }
