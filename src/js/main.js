@@ -1,4 +1,4 @@
-import * as kb from './key-bindings';
+import keyBidings from './key-bindings';
 
 const withParams = (url, params) => {
   const urlParams = new URLSearchParams();
@@ -13,9 +13,9 @@ const updateEditor = () => {
   editor.CodeMirror.setOption('keyMap', 'vim');
   const cm = editor.CodeMirror.constructor;
 
-  Object.entries(kb.normal).forEach(([key, value]) => cm.Vim.map(key, value, 'normal'));
-  Object.entries(kb.insert).forEach(([key, value]) => cm.Vim.map(key, value, 'insert'));
-  Object.entries(kb.visual).forEach(([key, value]) => cm.Vim.map(key, value, 'visual'));
+  Object.entries(keyBidings).forEach(([mode, kb]) => {
+    Object.entries(kb).forEach(([k, v]) => cm.Vim.map(k, v, mode));
+  });
 
   // enable auto-format
   cm.keyMap.default['Ctrl-J'] = async cm => {
