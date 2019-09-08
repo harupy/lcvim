@@ -1,6 +1,12 @@
 import * as kb from './keyBindings';
 
-const applyKeyMaps = () => {
+const withParams = (url, params) => {
+  const urlParams = new URLSearchParams();
+  Object.entries(params).forEach(([k, v]) => urlParams.set(k, v));
+  return url + (url.endsWith('?') ? '' : '?') + urlParams.toString();
+};
+
+const updateEditor = () => {
   const editor = document.querySelector('div.CodeMirror');
 
   if (!editor || !editor.CodeMirror) return;
@@ -11,7 +17,18 @@ const applyKeyMaps = () => {
   Object.entries(kb.insert).forEach(([key, value]) => cm.Vim.map(key, value, 'insert'));
   Object.entries(kb.visual).forEach(([key, value]) => cm.Vim.map(key, value, 'visual'));
 
-  document.removeEventListener('mouseup', applyKeyMaps, false);
+  // enable auto-format
+  cm.keyMap.default['Ctrl-J'] = async cm => {
+    const params = { code: cm.getValue(), indent_size: 4, max_line_length: 100 };
+    const resp = await fetch(withParams('https://pyformatter.com/api/format', params));
+
+    const data = await resp.json();
+    const cur = cm.getCursor();
+    cm.setValue(data.code);
+    cm.setCursor(cur);
+  };
+
+  document.removeEventListener('mouseup', updateEditor);
 };
 
-document.addEventListener('mouseup', applyKeyMaps, false);
+document.addEventListener('mouseup', updateEditor);
