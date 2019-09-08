@@ -1,4 +1,4 @@
-import * as kb from './keyBindings';
+import * as kb from './key-bindings';
 
 const withParams = (url, params) => {
   const urlParams = new URLSearchParams();

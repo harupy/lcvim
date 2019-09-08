@@ -9,7 +9,7 @@
   "content_scripts": [
     {
       "matches": ["https://leetcode.com/problems/*"],
-      "js": ["dist/contentScript.js"],
+      "js": ["dist/content-script.js"],
       "run_at": "document_idle"
     }
   ],

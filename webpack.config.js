@@ -4,7 +4,7 @@ module.exports = {
   mode: 'development',
   entry: {
     main: './src/js/main.js',
-    contentScript: './src/js/contentScript.js',
+    'content-script': './src/js/content-script.js',
   },
   output: {
     path: path.join(__dirname, 'src/dist/'),
